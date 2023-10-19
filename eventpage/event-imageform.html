@@ -1,0 +1,171 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span class="font-header">Event Images / Videos Form</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button class="icon-header">
+            <mat-icon mat-list-icon [mat-dialog-close]="false">close</mat-icon>
+        </button>
+    </mat-toolbar>
+</h4>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="EventImageFormData" (ngSubmit)="onSubmit()">
+        <br />
+        <br />
+        <h3 style="font-weight: 800;"> Images</h3>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file1" class="file-label">
+                    <button *ngIf="image_path == ''" type="button" mat-raised-button
+                        (click)="fileInput1.click()">{{pic_1}}</button>
+                </label>
+                <input hidden #fileInput1 type="file" id="file1" (change)="fileProgress($event, 'pic_1', 'image_path', fileInput1)" />
+                <div class="preview-image" *ngIf="image_path != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path}}" style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file2" class="file-label">
+                    <button *ngIf="image_path2 == ''" type="button" mat-raised-button
+                        (click)="fileInput2.click()">{{pic_2}}</button>
+                </label>
+                <input hidden #fileInput2 type="file" id="file2" (change)="fileProgress($event, 'pic_2', 'image_path2', fileInput2)" />
+                <div class="preview-image" *ngIf="image_path2 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path2}}" style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path2')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file3" class="file-label">
+                    <button *ngIf="image_path3 == ''" type="button" mat-raised-button
+                        (click)="fileInput3.click()">{{pic_3}}</button>
+                </label>
+                <input hidden #fileInput3 type="file" id="file3" (change)="fileProgress($event, 'pic_3', 'image_path3', fileInput3)" />
+                <div class="preview-image" *ngIf="image_path3 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path3}}" style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path3')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file4" class="file-label">
+                    <button *ngIf="image_path4 == ''" type="button" mat-raised-button
+                        (click)="fileInput4.click()">{{pic_4}}</button>
+                </label>
+                <input hidden #fileInput4 type="file" id="file4" (change)="fileProgress($event, 'pic_4', 'image_path4', fileInput4)" />
+                <div class="preview-image" *ngIf="image_path4 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path4}}"style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path4')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file5" class="file-label">
+                    <button *ngIf="image_path5 == ''" type="button" mat-raised-button
+                        (click)="fileInput5.click()">{{pic_5}}</button>
+                </label>
+                <input hidden #fileInput5 type="file" id="file5" (change)="fileProgress($event, 'pic_5', 'image_path5', fileInput5)" />
+                <div class="preview-image" *ngIf="image_path5 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path5}}"style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path5')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file6" class="file-label">
+                    <button *ngIf="image_path6 == ''" type="button" mat-raised-button
+                        (click)="fileInput6.click()">{{pic_6}}</button>
+                </label>
+                <input hidden #fileInput6 type="file" id="file6" (change)="fileProgress($event, 'pic_6', 'image_path6', fileInput6)" />
+                <div class="preview-image" *ngIf="image_path6 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path6}}"style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path6')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file7" class="file-label">
+                    <button *ngIf="image_path7 == ''" type="button" mat-raised-button
+                        (click)="fileInput7.click()">{{pic_7}}</button>
+                </label>
+                <input hidden #fileInput7 type="file" id="file7" (change)="fileProgress($event, 'pic_7', 'image_path7', fileInput7)" />
+                <div class="preview-image" *ngIf="image_path7 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path7}}"style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path7')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div fxFlex="33%" class="dialog-picture">
+                <label for="file8" class="file-label">
+                    <button *ngIf="image_path8 == ''" type="button" mat-raised-button
+                        (click)="fileInput8.click()">{{pic_8}}</button>
+                </label>
+                <input hidden #fileInput8 type="file" id="file8" (change)="fileProgress($event, 'pic_8', 'image_path8', fileInput8)" />
+                <div class="preview-image" *ngIf="image_path8 != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path8}}"style="width: 100%; height: 200px; object-fit: cover;" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path8')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <br />
+
+        <h3 style="font-weight: 800;">You Tube</h3>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="33%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>You Tube id</mat-label>
+                    <input matInput placeholder="" required formControlName="tittle" />
+                    <mat-error>Tittle is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="33%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>You Tube id</mat-label>
+                    <input matInput placeholder="" required formControlName="date" />
+                    <mat-error>Date is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="33%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>You Tube id</mat-label>
+                    <input matInput placeholder="" required formControlName="date" />
+                    <mat-error>Date is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+            <button mat-stroked-button [mat-dialog-close]="false" class="icon-bottom-close">Cancel</button>&nbsp;&nbsp;&nbsp;
+            <button mat-stroked-button type="submit" [disabled]="loading" class="icon-bottom-save">Save</button>
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3"
+                [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

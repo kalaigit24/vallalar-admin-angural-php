@@ -1,0 +1,67 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span class="font-header">Video Form</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button class="icon-header">
+            <mat-icon mat-list-icon [mat-dialog-close]="false">close</mat-icon>
+        </button>
+    </mat-toolbar>
+</h4>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="VideoFormData" (ngSubmit)="onSubmit()">     
+        <br/> 
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">     
+           <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Tittle</mat-label>
+                    <input matInput placeholder="" required formControlName="tittle" />
+                    <mat-error>Tittle  is required</mat-error>
+                </mat-form-field>
+            </div> 
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="" required formControlName="date" />
+                    <mat-error>Date  is required</mat-error>
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">     
+            <div fxFlex="50%">
+                 <mat-form-field appearance="outline" fxFlex="100%">
+                     <mat-label>Youtube Video ID</mat-label>
+                     <input matInput placeholder="" required formControlName="youtubevideo_id" />
+                     <mat-error>Id  is required</mat-error>
+                 </mat-form-field>
+             </div> 
+             <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="1">Active</mat-option>
+                        <mat-option value="0">In-Active</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+             
+         </div>
+        <br/>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start" *ngIf="id!=''"> 
+        <youtube-player
+          [videoId]="id"
+          (ready)="savePlayer($event)"
+          (change)="onStateChange($event)"
+          [playerVars]="playerVars">
+        </youtube-player>
+      </div>     
+            
+
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+            <button mat-stroked-button [mat-dialog-close]="false" class="icon-bottom-close">Cancel</button>&nbsp;&nbsp;&nbsp;
+            <button mat-stroked-button type="submit" [disabled]="loading" class="icon-bottom-save">Save</button>
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3" [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

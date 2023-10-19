@@ -1,0 +1,74 @@
+
+
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span class="font-header">Gallery Form</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button class="icon-header">
+            <mat-icon mat-list-icon [mat-dialog-close]="false">close</mat-icon>
+        </button>
+    </mat-toolbar>
+</h4>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="GalleryFormData" (ngSubmit)="onSubmit()">      
+        <br/>
+        <br/>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">     
+           <!-- <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="" required formControlName="name" />
+                    <mat-error>Tittle  is required</mat-error>
+                </mat-form-field>
+            </div>  -->
+            <div fxFlex="50%" fxLayoutAlign="center center">
+                <button *ngIf="image_path == ''" type="button" mat-raised-button (click)="fileInput.click()">{{gallery_image}}</button>
+                <input hidden #fileInput type="file" id="file" (change)="fileProgress($event, 'gallery_image', 'image_path')" />
+                       <div class="preview-image" *ngIf="image_path != ''">
+                    <img class="dialog-picture" mat-card-image src="{{image_url}}{{image_path}}" alt="Photo" />
+                    <button mat-icon-button aria-label="Close icon" (click)="removeMedia('image_path')">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="100%">
+                <!-- <angular-editor id="editor1" required formControlName="description" [config]="editorConfig" ></angular-editor> -->
+                <mat-form-field appearance="outline" fxFlex="100%"  class="example-full-width">
+                    <mat-label>Gallery Text</mat-label>
+                    <textarea matInput rows="8" required formControlName="description"></textarea>
+                  </mat-form-field>
+            
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="1">Active</mat-option>
+                        <mat-option value="0">In-Active</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+
+            <button mat-stroked-button [mat-dialog-close]="false" class="icon-bottom-close">Cancel</button>&nbsp;&nbsp;&nbsp;
+            <button mat-stroked-button type="submit" [disabled]="loading" class="icon-bottom-save">Save</button>
+
+            <!--<button mat-button [mat-dialog-close]="false">Cancel</button>
+            <button mat-button type="submit" [disabled]="loading">Save</button>-->
+
+
+
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3" [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

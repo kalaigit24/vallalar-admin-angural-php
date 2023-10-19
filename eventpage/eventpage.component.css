@@ -1,0 +1,14 @@
+/* Add CSS styles to scale and cover the images */
+.dialog-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .dialog-image {
+    width: 100%; /* Ensure the image takes up the entire width of its container */
+    height: 200px; /* Set a fixed height for all images (adjust as needed) */
+    object-fit: cover; /* Maintain the aspect ratio and cover the container */
+  }

@@ -1,0 +1,41 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" opened cdkScrollable class="primary">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header></app-header>   
+        <div class="add-btn-container">
+            <button mat-raised-button style="background-color: #e7b73b;" (click)="openDialog(0, 'null')"><mat-icon>add</mat-icon> Add Event</button>
+        </div>        
+        <mat-list>
+            <ng-container *ngFor="let data of result">
+                <mat-list-item>
+                    <!--<button mat-icon-button aria-label="label" (click)="openDialog(data.user_id, 'result')">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="label" (click)="confirmDelete(data.user_id)">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                    </button>-->
+                    <img matListAvatar src="{{image_url}}{{data.event_image}}" *ngIf="data.event_image && data.imageurl != ''" alt="image" (click)="confirmDialog(data, 'preview')" />
+                    
+                    <button mat-icon-button aria-label="label" (click)="openimage(data.event_id, 'result')">
+                        <mat-icon #tooltip="matTooltip" matTooltip="add">add_circle</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="label" (click)="openDialog(data.event_id, 'result')">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="label" (click)="openConfirmationDialog(data.event_id)">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                    </button>
+                    <h4 mat-line [innerHTML]="data.event_name"></h4>                    
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </ng-container>
+        </mat-list>
+    
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0)" name="sp3" [fullScreen]="false" type="ball-spin-clockwise" color = "#1d94cd"  size="medium" *ngIf="loading"><p style="color: darkblue" > Loading... </p></ngx-spinner>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+

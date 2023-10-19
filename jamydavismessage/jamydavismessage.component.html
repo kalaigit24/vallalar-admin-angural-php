@@ -1,0 +1,282 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" opened cdkScrollable class="primary">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header></app-header>
+
+        <div class="add-btn-container" *ngIf="hollmattab==0">
+            <button mat-raised-button color="primary" (click)="openDialog(0, 'null')">
+                <mat-icon>add</mat-icon> Articles
+            </button>
+        </div>
+        <div class="add-btn-container" *ngIf="hollmattab==1">
+            <button mat-raised-button color="primary" (click)="openDialogaudio(0, 'null')">
+                <mat-icon>add</mat-icon> Audios
+            </button>
+        </div>
+        <div class="add-btn-container" *ngIf="hollmattab==2">
+            <button mat-raised-button color="primary" (click)="openDialogvedio(0, 'null')">
+                <mat-icon>add</mat-icon> Videos
+            </button>
+        </div>
+        <mat-tab-group (selectedTabChange)="onTabChangedAll($event);">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>speaker_notes</mat-icon>&nbsp;&nbsp;Articles
+                </ng-template>
+                <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="onTabChanged($event);" *ngIf="hollmattab==0">
+                    <mat-tab label="தமிழ்">
+                        <mat-list>
+                            <ng-container *ngFor="let data of result">
+                                <mat-list-item>
+                                    <img matListAvatar src="{{image_url}}{{data.articles_image}}"
+                                        *ngIf="data.articles_image && data.imageurl != ''" alt="image"
+                                        (click)="confirmDialog(data, 'preview')" />
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openDialog(data.articles_id, 'result')">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openConfirmationDialog(data.articles_id)">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                    </button>
+                                    <h4 mat-line [innerHTML]="data.articles_name"></h4>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                        </mat-list>
+                    </mat-tab>
+                    <mat-tab label="English">
+                        <mat-list>
+                            <ng-container *ngFor="let data of result">
+                                <mat-list-item>
+                                    <img matListAvatar src="{{image_url}}{{data.articles_image}}"
+                                        *ngIf="data.articles_image && data.imageurl != ''" alt="image"
+                                        (click)="confirmDialog(data, 'preview')" />
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openDialog(data.articles_id, 'result')">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openConfirmationDialog(data.articles_id)">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                    </button>
+                                    <h4 mat-line [innerHTML]="data.articles_name"></h4>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                        </mat-list>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>library_music</mat-icon>&nbsp;&nbsp;Audios
+                </ng-template>
+                <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="onTabChanged($event);" *ngIf="hollmattab==1">
+                    <mat-tab label="தமிழ்">
+                        <mat-list>
+                            <ng-container *ngFor="let data of resultaudio">
+                                <mat-list-item>
+
+                                    <img matListAvatar src="{{image_url}}{{data.audio_image}}"
+                                        *ngIf="data.audio_image && data.imageurl != ''" alt="image"
+                                        (click)="confirmDialogaudio(data, 'preview')" />
+
+                                    <div fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center center"
+                                        *ngIf="data.audio_link != ''">
+                                        <audio controls>
+                                            <source src="{{image_url}}{{data.audio_link}}" type="audio/mp3">
+                                        </audio>
+                                        <hr>
+                                    </div>
+
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openDialogaudio(data.audio_id, 'resultaudio')">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openConfirmationDialog(data.audio_id)">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                    </button>
+                                    <h4 mat-line [innerHTML]="data.audio_name"></h4>
+                                    <p mat-line [innerHTML]="data.audio_date"></p>
+
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                        </mat-list>
+                    </mat-tab>
+                    <mat-tab label="English">
+                        <mat-list>
+                            <ng-container *ngFor="let data of resultaudio">
+                                <mat-list-item>
+
+                                    <img matListAvatar src="{{image_url}}{{data.audio_image}}"
+                                        *ngIf="data.audio_image && data.imageurl != ''" alt="image"
+                                        (click)="confirmDialogaudio(data, 'preview')" />
+
+                                    <div fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center center"
+                                        *ngIf="data.audio_link != ''">
+                                        <audio controls>
+                                            <source src="{{image_url}}{{data.audio_link}}" type="audio/mp3">
+                                        </audio>
+                                        <hr>
+                                    </div>
+
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openDialogaudio(data.audio_id, 'resultaudio')">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openConfirmationDialog(data.audio_id)">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                    </button>
+                                    <h4 mat-line [innerHTML]="data.audio_name"></h4>
+                                    <p mat-line [innerHTML]="data.audio_date"></p>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                        </mat-list>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>theaters</mat-icon>&nbsp;&nbsp;Videos
+                </ng-template>
+                <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="onTabChanged($event);" *ngIf="hollmattab==2">
+                    <mat-tab label="தமிழ்">
+
+                        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding: 10px;">
+
+                            <div fxFlex="32" *ngFor="let data of resultvideo">
+                                <mat-card style="margin-bottom: 10px;">
+                                    <mat-card-header fxLayout="row" fxLayoutAlign="start center">
+                                        <div fxFlex="70">
+                                            <img mat-card-avatar src="./assets/loginlogo.jpg" style="background-color: dodgerblue; size: ;">
+                                            <div class="btn-01">
+                                                <mat-card-title>{{(data.video_name | slice:0:20) +'..'}}
+                                                </mat-card-title>
+                                                <mat-card-subtitle>{{(data.video_date) + '&nbsp;'}} </mat-card-subtitle>
+                                            </div>
+                                        </div>
+                                        <div fxFlex="30">
+                                            <button mat-icon-button aria-label="label"
+                                                (click)="openDialogvedio(data.video_id, 'resultvideo')">
+                                                <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                            </button>
+                                            <button mat-icon-button aria-label="label"
+                                                (click)="openConfirmationDialog(data.video_id)">
+                                                <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </mat-card-header>
+                                    <youtube-player [videoId]="data.video_youtubeid" (ready)="savePlayer($event)"
+                                        (change)="onStateChange($event)" [playerVars]="playerVars">
+                                    </youtube-player>
+                                    <mat-card-content>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+
+                        </div>
+
+                        <!--<mat-list>
+                    <ng-container *ngFor="let data of resultvideo">
+                        <mat-list-item>
+                           
+                            <img matListAvatar src="{{image_url}}{{data.video_image}}" *ngIf="data.video_image && data.imageurl != ''" alt="image" (click)="confirmDialog(data, 'preview')" />
+                            
+                            <div  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center center" *ngIf="data.video_youtubeid != ''">                   
+                                <youtube-player
+                                [videoId]="data.video_youtubeid"
+                                (ready)="savePlayer($event)"
+                                (change)="onStateChange($event)"
+                                [playerVars]="playerVars">
+                              </youtube-player>
+                                <hr>                   
+                            </div>
+                            
+                            
+                            <button mat-icon-button aria-label="label" (click)="openDialogvedio(data.video_id, 'resultvideo')">
+                                <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="label" (click)="openConfirmationDialog(data.video_id)">
+                                <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                            </button>
+                            <h4 mat-line [innerHTML]="data.video_name"></h4>  
+                            <p mat-line [innerHTML]="data.video_date"></p>                  
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                    </ng-container>
+                </mat-list>-->
+                    </mat-tab>
+                    <mat-tab label="English">
+                        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding: 10px;">
+
+                            <div fxFlex="32" *ngFor="let data of resultvideo">
+                                <mat-card style="margin-bottom: 10px;">
+                                    <mat-card-header fxLayout="row" fxLayoutAlign="start center">
+                                        <div fxFlex="70">
+                                            <img mat-card-avatar src="./assets/loginlogo.jpg" style="background-color: dodgerblue; size: ;">
+                                            <div class="btn-01">
+                                                <mat-card-title>{{(data.video_name | slice:0:20) +'..'}}
+                                                </mat-card-title>
+                                                <mat-card-subtitle>{{(data.video_date) + '&nbsp;'}} </mat-card-subtitle>
+                                            </div>
+                                        </div>
+                                        <div fxFlex="30">
+                                            <button mat-icon-button aria-label="label"
+                                                (click)="openDialogvedio(data.video_id, 'resultvideo')">
+                                                <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                            </button>
+                                            <button mat-icon-button aria-label="label"
+                                                (click)="openConfirmationDialog(data.video_id)">
+                                                <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </mat-card-header>
+                                    <youtube-player [videoId]="data.video_youtubeid" (ready)="savePlayer($event)"
+                                        (change)="onStateChange($event)" [playerVars]="playerVars">
+                                    </youtube-player>
+                                    <mat-card-content>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+
+                        </div>
+                       <!-- <mat-list>
+                            <ng-container *ngFor="let data of resultvideo">
+                                <mat-list-item>
+
+                                    <img matListAvatar src="{{image_url}}{{data.video_image}}"
+                                        *ngIf="data.video_image && data.imageurl != ''" alt="image"
+                                        (click)="confirmDialog(data, 'preview')" />
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openDialogvedio(data.video_id, 'resultvideo')">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button aria-label="label"
+                                        (click)="openConfirmationDialog(data.video_id)">
+                                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                                    </button>
+                                    <h4 mat-line [innerHTML]="data.video_name"></h4>
+                                    <p mat-line [innerHTML]="data.video_date"></p>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </ng-container>
+                        </mat-list>-->
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-tab>
+        </mat-tab-group>
+
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0)" name="sp3" [fullScreen]="false" type="ball-spin-clockwise"
+            color="#1d94cd" size="medium" *ngIf="loading">
+            <p style="color: darkblue"> Loading... </p>
+        </ngx-spinner>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

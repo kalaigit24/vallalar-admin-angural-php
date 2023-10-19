@@ -1,0 +1,39 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" opened cdkScrollable class="primary">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header></app-header>      
+        
+        
+        <mat-list>
+            <ng-container *ngFor="let data of result">
+                <mat-list-item>
+                    <!--<button mat-icon-button aria-label="label" (click)="openDialog(data.user_id, 'result')">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="label" (click)="confirmDelete(data.user_id)">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                    </button>
+                    <img matListAvatar src="{{image_url}}{{data.imageurl}}" *ngIf="data.imageurl && data.imageurl != ''" alt="image" (click)="imageView(data, 'preview')" />-->
+                    <button mat-icon-button aria-label="label" (click)="openView(data.contact_id, 'result')">
+                        <mat-icon #tooltip="matTooltip" matTooltip="View">remove_red_eye</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="label" (click)="openConfirmationDialog(data.contact_id)">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Delete">delete</mat-icon>
+                    </button>
+                    <h4 mat-line>{{data.contact_name}}</h4>
+                    <p mat-line>{{data.contact_phoneno}}</p>
+                    <p mat-line>{{ data.created_at | date:'dd-MM-yyyy' }} </p>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </ng-container>
+        </mat-list>
+       <!-- <button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>-->
+       
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0)" name="sp3" [fullScreen]="false" type="ball-spin-clockwise" color = "#1d94cd"  size="medium" *ngIf="loading"><p style="color: darkblue" > Loading... </p></ngx-spinner>
+        <!--<mat-progress-spinner mode="indeterminate" diameter='20' strokeWidth='50' *ngIf="loading"></mat-progress-spinner>-->
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+

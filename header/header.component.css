@@ -1,0 +1,8 @@
+mat-toolbar-row {
+    background: #c84403 !important;
+}
+.logout-btn-title{
+    margin-left: auto !important;
+    background-color: #e7b73b;
+    color: black;
+  }

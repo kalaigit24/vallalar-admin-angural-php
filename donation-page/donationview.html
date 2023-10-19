@@ -1,0 +1,99 @@
+<!--<h2 mat-dialog-title>Member Details</h2>
+<mat-dialog-content class="mat-typography">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+        <div fxFlex="75%">
+            <table class="Product-table">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td> : </td>
+                        <td> {{data.user_name}} </td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td> : </td>
+                        <td> {{data.user_phoneno}} </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td> : </td>
+                        <td> {{data.user_email}} </td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td> : </td>
+                        <td> {{data.user_address}} </td>
+                    </tr>
+                    <tr>
+                        <th>Pincode</th>
+                        <td> : </td>
+                        <td> {{data.user_pincode}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+    </div>
+    
+    <br/>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+        <button mat-button [mat-dialog-close]="false">Close</button>
+    </div>
+</mat-dialog-content>-->
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span class="font-header"> Donation Details</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button class="icon-header">
+            <mat-icon mat-list-icon [mat-dialog-close]="false">close</mat-icon>
+        </button>
+    </mat-toolbar>
+</h4>
+<mat-dialog-content class="mat-typography">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+        <div fxFlex="75%">
+            <table class="Product-table">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td> : </td>   
+                          <td>{{data.name}} </td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td> : </td>
+                        <td>{{data.mobile_no}} </td>
+                    </tr>
+                    <tr>
+                        <th>Reason</th>
+                        <td> : </td>
+                        <td>{{data.reason}} </td>
+                    </tr>
+                    <tr>
+                        <th>Donation Amount &nbsp;&nbsp;</th>
+                        <td> :&nbsp;&nbsp;  </td> 
+                        <td> {{ data.amount }} </td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Pincode</th>
+                        <td> : </td>
+                        <td> {{data.user_pincode}} </td>
+                    </tr>-->
+                    <tr>
+                        <th>Date Of Donation</th>
+                        <td> : </td>
+                        <td>{{ data.created_at | date:'dd-MM-yyyy' }} </td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>       
+    </div>
+    <br/>
+   
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end">
+        <!--<button mat-button [mat-dialog-close]="false">Close</button>-->
+        <button mat-stroked-button [mat-dialog-close]="false" class="icon-bottom-close">Close</button>
+    </div>
+    
+</mat-dialog-content>
+
