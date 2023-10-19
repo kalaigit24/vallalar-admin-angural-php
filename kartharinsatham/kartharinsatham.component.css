@@ -1,0 +1,11 @@
+
+
+
+ @font-face {
+    font-family: 'tamilfont';
+    src:url(/DavisIPH/admin/assets/fonts/TamilBible.ttf);
+  }
+textarea {
+    font-family: 'tamilfont';
+    font-size: inherit;
+ }
